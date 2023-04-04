@@ -68,8 +68,11 @@ export class App extends Component {
     this.setState({ contacts: parsedContacts });
   }
 
-  componentDidUpdate() {
-    localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+  componentDidUpdate(prevState) {
+    if(prevState.contact !== this.state.contact) {
+      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+    }
+    
   }
 
   render() {
